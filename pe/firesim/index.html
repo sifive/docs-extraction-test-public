@@ -1,0 +1,1082 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="FireSim Basics" href="FireSim-Basics.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>FireSim master documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">FireSim master documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/firesim_logo_small.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="FireSim-Basics.html">FireSim Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Getting-Started/Prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Getting-Started/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Tutorials</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Building-a-Simulator.html">Building a Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Running-a-Simulation.html">Running a Simulation on Primo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Making-a-Workload-Interactive.html">Making your Workload Interactive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Using-Snapshot-and-Replay.html">Using Snapshot and Replay</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI Tools:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/FireSim-Tester.html">Frontend (<code class="docutils literal notranslate"><span class="pre">firesim-tester</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/FireSim-Datamodels.html"><code class="docutils literal notranslate"><span class="pre">firesim-datamodels</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/Fire-Watcher.html"><code class="docutils literal notranslate"><span class="pre">fire-watcher</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html"><code class="docutils literal notranslate"><span class="pre">query-jfrog-artifacts</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Build Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Using-Wake.html">Using the Build Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html">Build Flow Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Config-HWDB.html">Hardware Artifacts (<code class="docutils literal notranslate"><span class="pre">config_hwdb</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Hardware-Artifact-and-Database.html">The Hardware Artifact Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html">Target Design Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html">Debugging Build Failures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html">Building Release RTL on Master</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Run Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Running-Simulations.html">Running Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html">Files: Paths vs URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Config-Runtime.html"><code class="docutils literal notranslate"><span class="pre">config_runtime</span></code></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Run-Docs/Manager/index.html">Manager Usage (<code class="docutils literal notranslate"><span class="pre">firesim</span></code>)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Manager Usage (firesim)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Overview.html">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Command-Line-Args.html">2. Manager Command Line Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html">3. Manager Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Environment-Variables.html">4. Manager Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Run-Docs/Workloads/index.html">Workloads</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Workloads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Workload-File.html">Workload Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Defining-Custom-Workloads.html">Defining Custom Workloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html">Specializing the Target’s Rootfs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Run-Docs/FireMarshal/index.html">FireMarshal (<code class="docutils literal notranslate"><span class="pre">marshal-lite</span></code>)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of FireMarshal (marshal-lite)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/Workload-Recipe.html">Workload Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/FUSDK.html">Building FUSDK for FireSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/Fetching-Prebuilt-Workloads.html">Fetching Prebuilt Workloads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Debugging-Hanging-Simulators.html">Debugging a Hanging Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Simulator-Performance.html">Simulator Performance</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug Features:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html">Assertion Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html">Printf Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Snapshotting.html">State Snapshot and Replay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/AutoCounter.html">AutoCounter: Sideband Counters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html">AutoILA: FPGA Probe Insertion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Triggers.html">Simulation Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/TracerV.html">TracerV: Instruction Tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/JTAG.html">JTAG, OpenOCD &amp; GDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html">TracerV + Flame Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/TokenHasher.html">Token Hashers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Metasimulation Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html">Debugging with Metasimulation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bridge Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Bridge-Docs/Bridges.html">Target-to-Host Bridges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bridge-Docs/Bridge-Walkthrough.html">Bridge Walk-through</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html">Compiler &amp; Driver Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Manager-Development.html">Manager Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Container-Development.html">Container Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Documentation.html">Documentation Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Git-Subtree.html"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">subtree</span></code> &amp; FireSim-private</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Miscellaneous:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Misc/Why-FireSim.html">Why FireSim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Misc/LI-BDN.html">Target Abstraction &amp; Host Decoupling</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/sifive/federation/blob/master/firesim/docs/index.md?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/sifive/federation/edit/master/firesim/docs/index.md" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-firesim-s-documentation-version-master">
+<h1>Welcome to FireSim’s documentation (version “master”)!<a class="headerlink" href="#welcome-to-firesim-s-documentation-version-master" title="Link to this heading">¶</a></h1>
+<p>New to FireSim? Jump to the <a class="reference internal" href="FireSim-Basics.html#firesim-basics"><span class="std std-ref">FireSim Basics</span></a> page for more info.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="FireSim-Basics.html">FireSim Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FireSim-Basics.html#background-terminology">Background/Terminology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#firesim-manager-firesim">FireSim Manager (<code class="docutils literal notranslate"><span class="pre">firesim</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#emulation-vs-simulation">Emulation vs Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#metasimulation">Metasimulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#computer-disambiguation">Computer Disambiguation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#target">Target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#host">Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FireSim-Basics.html#rhodium">Rhodium</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FireSim-Basics.html#key-files-data-structures">Key Files / Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FireSim-Basics.html#config-runtime"><code class="docutils literal notranslate"><span class="pre">config_runtime</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FireSim-Basics.html#config-hwdb"><code class="docutils literal notranslate"><span class="pre">config_hwdb</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FireSim-Basics.html#workload">Workload</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Getting-Started/Prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Prerequisites.html#testing-your-credentials">Testing your Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Prerequisites.html#optional-build-prerequisites">Optional Build Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Getting-Started/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Building-a-Simulator.html">Building a Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Building-a-Simulator.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Building-a-Simulator.html#pre-synthesis-rtl-simulation-metasimulation">Pre-synthesis RTL Simulation (Metasimulation)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Building-a-Simulator.html#running-an-example-build">Running an Example Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Building-a-Simulator.html#finding-prebuilt-fpga-images">Finding Prebuilt FPGA Images</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Running-a-Simulation.html">Running a Simulation on Primo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Running-a-Simulation.html#configuring-input-files">Configuring Input Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Running-a-Simulation.html#running-the-simulation">Running the Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Making-a-Workload-Interactive.html">Making your Workload Interactive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Making-a-Workload-Interactive.html#running-in-interactive-mode">Running in Interactive Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Making-a-Workload-Interactive.html#interacting-with-the-simulation">Interacting with the Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Getting-Started/Using-Snapshot-and-Replay.html">Using Snapshot and Replay</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Using-Snapshot-and-Replay.html#snapshotting-walkthrough">Snapshotting Walkthrough</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Getting-Started/Using-Snapshot-and-Replay.html#out-of-band-replay-walkthrough">Out-of-Band Replay Walkthrough</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#help-my-simulation-hangs">Help, My Simulation Hangs!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FAQ.html#should-my-simulator-produce-different-results-across-runs">Should My Simulator Produce Different Results Across Runs?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">CLI Tools:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/FireSim-Tester.html">Frontend (<code class="docutils literal notranslate"><span class="pre">firesim-tester</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/FireSim-Tester.html#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/FireSim-Tester.html#invoking-the-frontend">Invoking The Frontend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/FireSim-Tester.html#command-line-interface">Command-Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CLI-Tools/FireSim-Tester.html#Sub-commands">Sub-commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/FireSim-Datamodels.html"><code class="docutils literal notranslate"><span class="pre">firesim-datamodels</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/FireSim-Datamodels.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/FireSim-Datamodels.html#command-line-interface">Command-Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CLI-Tools/FireSim-Datamodels.html#Sub-commands">Sub-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/FireSim-Datamodels.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/Fire-Watcher.html"><code class="docutils literal notranslate"><span class="pre">fire-watcher</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Fire-Watcher.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Fire-Watcher.html#command-line-interface">Command-Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CLI-Tools/Fire-Watcher.html#fire_watcher.__main__-create_parser-named-arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Fire-Watcher.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html"><code class="docutils literal notranslate"><span class="pre">query-jfrog-artifacts</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html#one-time-setup">One-Time Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html#command-line-interface">Command-Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html#query_jfrog_artifacts.__main__-create_parser-named-arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html#filter-operators">Filter Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI-Tools/Query-JFrog-Artifacts.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Build Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Using-Wake.html">Using the Build Flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Using-Wake.html#frontend-basics">Frontend Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Using-Wake.html#out-of-band-file-modifications">Out-of-Band File Modifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Using-Wake.html#step-packaging-sharing">Step Packaging / Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Using-Wake.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html">Build Flow Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#steps">Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#firechipbootrom">FireChipBootRom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#generatefirrtlmaskrom">GenerateFirrtlMaskRom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#rhodiumfirrtltomlir">RhodiumFirrtlToMlir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#rhodiumtransformtarget">RhodiumTransformTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#generatefpgacollateral">GenerateFPGACollateral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#rhodiumgenerateshim">RhodiumGenerateShim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#metasimulationcompile">MetasimulationCompile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#compilereplaysimulator">CompileReplaySimulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#compiledriver">CompileDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#createfiresimbuildartifact">CreateFireSimBuildArtifact</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#publishhamartifact">PublishHamArtifact</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#metasimulationexecute">MetasimulationExecute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#replayexecute">ReplayExecute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#firesimexecute">FireSimExecute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#firesimfetch">FireSimFetch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#populatefpgabuild">PopulateFPGABuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#compilef1checkpoint">CompileF1Checkpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#extractsynthverilog">ExtractSynthVerilog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#vivadosynthesis">VivadoSynthesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#compileazurecheckpoint">CompileAzureCheckpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#compileprimocheckpoint">CompilePrimoCheckpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#firesimfpgabuildreduction">FireSimFpgaBuildReduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#createf1agfi">CreateF1AGFI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#createazurexclbin">CreateAzureXclbin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Flow-Architecture-and-Steps.html#createfiresimworkload">CreateFireSimWorkload</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Config-HWDB.html">Hardware Artifacts (<code class="docutils literal notranslate"><span class="pre">config_hwdb</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#fields">Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#fpga-image"><code class="docutils literal notranslate"><span class="pre">fpga_image</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Config-HWDB.html#bitstream"><code class="docutils literal notranslate"><span class="pre">bitstream</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Config-HWDB.html#siemens-primo"><code class="docutils literal notranslate"><span class="pre">Siemens</span> <span class="pre">Primo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Config-HWDB.html#aws-f1"><code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">F1</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Config-HWDB.html#azure-vitis"><code class="docutils literal notranslate"><span class="pre">Azure</span> <span class="pre">/</span> <span class="pre">Vitis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Config-HWDB.html#tool-version"><code class="docutils literal notranslate"><span class="pre">tool_version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#simulator-spec"><code class="docutils literal notranslate"><span class="pre">simulator_spec</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#driver-tar"><code class="docutils literal notranslate"><span class="pre">driver_tar</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#probe-file-optional"><code class="docutils literal notranslate"><span class="pre">probe_file</span> <span class="pre">(OPTIONAL)</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#dts-optional"><code class="docutils literal notranslate"><span class="pre">dts</span> <span class="pre">(OPTIONAL)</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Config-HWDB.html#replay-archive-optional"><code class="docutils literal notranslate"><span class="pre">replay_archive</span> <span class="pre">(OPTIONAL)</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Hardware-Artifact-and-Database.html">The Hardware Artifact Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Hardware-Artifact-and-Database.html#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html">Target Design Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#list-of-supported-targets">List of Supported Targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#adding-a-new-target-to-the-supported-targets-list">Adding a New Target to the Supported Targets List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#testing-an-unsupported-design">Testing an Unsupported Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#restrictions-on-target-rtl">Restrictions on Target RTL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#including-verilog-ip">Including Verilog IP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#multiple-clock-domains">Multiple Clock Domains</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#target-side-fpga-constraints">Target-Side FPGA Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Generating-Different-Targets.html#ram-inference-hints">RAM Inference Hints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html">Debugging Build Failures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html#overutilization">Overutilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html#multithreading-of-repeated-instances">Multithreading of Repeated Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html#multi-ported-memory-optimization">Multi-Ported Memory Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html#timing-closure">Timing Closure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Debugging-Build-Failures.html#frequency-sweeping">Frequency Sweeping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html">Building Release RTL on Master</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html#existing-input-designs">Existing Input Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html#simulation-time-usage">Simulation-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html#limitations-caveats">Limitations / Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html#design-incompatibility">Design Incompatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Build-Docs/Building-Release-RTL-on-Master.html#timing-changes">Timing Changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Run Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Running-Simulations.html">Running Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Running-Simulations.html#batch-mode">Batch Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Running-Simulations.html#file-visibility-in-the-container">File Visibility in the Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Running-Simulations.html#modifying-the-config-runtime">Modifying the <code class="docutils literal notranslate"><span class="pre">config_runtime</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Running-Simulations.html#interactive-mode">Interactive Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html">Files: Paths vs URLs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html#supported-urls">Supported URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html#file-path-behavior">File Path Behavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html#wake">Wake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html#standalone-manager">Standalone Manager</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html#when-to-use-paths-vs-file-urls">When to Use Paths vs File URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/File-URL-Union-Types.html#fsspec-integration">FSSPEC Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Config-Runtime.html"><code class="docutils literal notranslate"><span class="pre">config_runtime</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#run-farm"><code class="docutils literal notranslate"><span class="pre">run_farm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#target-config"><code class="docutils literal notranslate"><span class="pre">target_config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#no-net-num-nodes"><code class="docutils literal notranslate"><span class="pre">no_net_num_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#profile-interval"><code class="docutils literal notranslate"><span class="pre">profile_interval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#default-hw-config"><code class="docutils literal notranslate"><span class="pre">default_hw_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#max-cycles"><code class="docutils literal notranslate"><span class="pre">max_cycles</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#tracing"><code class="docutils literal notranslate"><span class="pre">tracing</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#enable"><code class="docutils literal notranslate"><span class="pre">enable</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#output-format"><code class="docutils literal notranslate"><span class="pre">output_format</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#selector-start-and-end"><code class="docutils literal notranslate"><span class="pre">selector</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code>, and <code class="docutils literal notranslate"><span class="pre">end</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#autocounter"><code class="docutils literal notranslate"><span class="pre">autocounter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#read-rate"><code class="docutils literal notranslate"><span class="pre">read_rate</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#workload"><code class="docutils literal notranslate"><span class="pre">workload</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#workload-name"><code class="docutils literal notranslate"><span class="pre">workload_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#terminate-on-completion"><code class="docutils literal notranslate"><span class="pre">terminate_on_completion</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#suffix-tag"><code class="docutils literal notranslate"><span class="pre">suffix_tag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#result-dir-name"><code class="docutils literal notranslate"><span class="pre">result_dir_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#synth-assert"><code class="docutils literal notranslate"><span class="pre">synth_assert</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#disable-synth-asserts"><code class="docutils literal notranslate"><span class="pre">disable_synth_asserts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#continue-on-asserts"><code class="docutils literal notranslate"><span class="pre">continue_on_asserts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#snapshot"><code class="docutils literal notranslate"><span class="pre">snapshot</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#id3"><code class="docutils literal notranslate"><span class="pre">enable</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#interval"><code class="docutils literal notranslate"><span class="pre">interval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#keep"><code class="docutils literal notranslate"><span class="pre">keep</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#start"><code class="docutils literal notranslate"><span class="pre">start</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#synth-printf"><code class="docutils literal notranslate"><span class="pre">synth_printf</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#id4"><code class="docutils literal notranslate"><span class="pre">start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#id5"><code class="docutils literal notranslate"><span class="pre">end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#cycle-prefix"><code class="docutils literal notranslate"><span class="pre">cycle_prefix</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#host-debug"><code class="docutils literal notranslate"><span class="pre">host_debug</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#zero-out-dram"><code class="docutils literal notranslate"><span class="pre">zero_out_dram</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#skip-bitstream-compatibility-check"><code class="docutils literal notranslate"><span class="pre">skip_bitstream_compatibility_check</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#heartbeat-polling-interval"><code class="docutils literal notranslate"><span class="pre">heartbeat_polling_interval</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#fased-timing-models"><code class="docutils literal notranslate"><span class="pre">fased_timing_models</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#use-default-timing-settings"><code class="docutils literal notranslate"><span class="pre">use_default_timing_settings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#read-latency"><code class="docutils literal notranslate"><span class="pre">read_latency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#write-latency"><code class="docutils literal notranslate"><span class="pre">write_latency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#read-max-outstanding-requests"><code class="docutils literal notranslate"><span class="pre">read_max_outstanding_requests</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#write-max-outstanding-requests"><code class="docutils literal notranslate"><span class="pre">write_max_outstanding_requests</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#manager-config"><code class="docutils literal notranslate"><span class="pre">manager_config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#no-workload-monitor"><code class="docutils literal notranslate"><span class="pre">no_workload_monitor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#preserve-output-paths"><code class="docutils literal notranslate"><span class="pre">preserve_output_paths</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#uart"><code class="docutils literal notranslate"><span class="pre">uart</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#use-pty"><code class="docutils literal notranslate"><span class="pre">use_pty</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#use-cycle-prefix"><code class="docutils literal notranslate"><span class="pre">use_cycle_prefix</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#fesvr"><code class="docutils literal notranslate"><span class="pre">fesvr</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Config-Runtime.html#coreip-testharness-config"><code class="docutils literal notranslate"><span class="pre">coreip_testharness_config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Config-Runtime.html#bootrom-select"><code class="docutils literal notranslate"><span class="pre">bootrom_select</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Manager/index.html">Manager Usage (<code class="docutils literal notranslate"><span class="pre">firesim</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Overview.html">1. Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Overview.html#installation">1.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Overview.html#initialization">1.2. Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Overview.html#inputs-to-the-manager">1.3. “Inputs” to the Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Overview.html#logging">1.4. Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Command-Line-Args.html">2. Manager Command Line Arguments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Command-Line-Args.html#c-filename-yaml-json-runtimeconfigfile-filename-yaml-json">2.1. <code class="docutils literal notranslate"><span class="pre">-c</span></code> <code class="docutils literal notranslate"><span class="pre">FILENAME.{yaml,</span> <span class="pre">json}</span></code>, <code class="docutils literal notranslate"><span class="pre">--runtimeconfigfile</span></code> <code class="docutils literal notranslate"><span class="pre">FILENAME.{yaml,</span> <span class="pre">json}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Command-Line-Args.html#a-filename-yaml-json-json5-hwdbconfigfile-filename-yaml-json-json5">2.2. <code class="docutils literal notranslate"><span class="pre">-a</span></code> <code class="docutils literal notranslate"><span class="pre">FILENAME.{yaml,</span> <span class="pre">json,</span> <span class="pre">json5}</span></code>, <code class="docutils literal notranslate"><span class="pre">--hwdbconfigfile</span></code> <code class="docutils literal notranslate"><span class="pre">FILENAME.{yaml,</span> <span class="pre">json,</span> <span class="pre">json5}</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Command-Line-Args.html#task">2.3. <code class="docutils literal notranslate"><span class="pre">TASK</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html">3. Manager Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-infrasetup">3.1. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">infrasetup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-boot">3.2. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">boot</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-kill">3.3. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">kill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-runworkload">3.4. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">runworkload</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-setupandrun">3.5. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">setupandrun</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-resume">3.6. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">resume</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Tasks.html#firesim-runcheck">3.7. <code class="docutils literal notranslate"><span class="pre">firesim</span> <span class="pre">runcheck</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Manager/Manager-Environment-Variables.html">4. Manager Environment Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Manager/Manager-Environment-Variables.html#firesim-deploy-dir">4.1. FIRESIM_DEPLOY_DIR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Workloads/index.html">Workloads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Workload-File.html">Workload Config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Workload-File.html#workload">Workload File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Workload-File.html#workload-jobs">Workload Jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Defining-Custom-Workloads.html">Defining Custom Workloads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Defining-Custom-Workloads.html#uniform-workload-json">Uniform Workload JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html">Specializing the Target’s Rootfs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#enabling">Enabling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#script-interface">Script Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#reproducibility">Reproducibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#modifying-fsfl-distributions">Modifying FSFL Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#interactive-example">Interactive Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Workloads/Specializing-the-Targets-Rootfs.html#running-a-custom-riscv-application">Running a Custom RISCV Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/FireMarshal/index.html">FireMarshal (<code class="docutils literal notranslate"><span class="pre">marshal-lite</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html">Walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#initial-setup">Initial Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#a-hello-world-recipe">A Hello World Recipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#building-workload-artifacts">Building Workload Artifacts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#generating-a-workload-file">Generating a Workload File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#publishing-a-workload">Publishing a Workload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#fetching-a-workload">Fetching a Workload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Walkthrough.html#cleaning-up">Cleaning Up</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/Workload-Recipe.html">Workload Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/FUSDK.html">Building FUSDK for FireSim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/FUSDK.html#how-to-build-an-fusdk-workload">How to Build an FUSDK workload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/FUSDK.html#pre-canned-fusdk-variations">Pre-Canned FUSDK Variations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/FUSDK.html#structure-of-the-fusdk-buildroot">Structure of the FUSDK buildroot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/FUSDK.html#prebuilt-fusdk-images-in-federation">Prebuilt FUSDK Images in Federation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/FireMarshal/Fetching-Prebuilt-Workloads.html">Fetching Prebuilt Workloads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Fetching-Prebuilt-Workloads.html#using-s3-hosted-marshal-image-sh">Using s3-hosted-marshal-image.sh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Fetching-Prebuilt-Workloads.html#using-a-fetched-workload">Using a Fetched Workload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/FireMarshal/Fetching-Prebuilt-Workloads.html#image-versioning">Image Versioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Debugging-Hanging-Simulators.html">Debugging a Hanging Simulator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Debugging-Hanging-Simulators.html#case-1-target-hang">Case 1: Target hang.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Debugging-Hanging-Simulators.html#case-2-simulator-hang-due-to-fpga-side-token-starvation">Case 2: Simulator hang due to FPGA-side token starvation.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Debugging-Hanging-Simulators.html#case-3-simulator-hang-due-to-driver-side-deadlock">Case 3: Simulator hang due to driver-side deadlock.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Debugging-Hanging-Simulators.html#simulator-heartbeat-plusargs">Simulator Heartbeat PlusArgs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Run-Docs/Simulator-Performance.html">Simulator Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#firesim-s-performance-iron-law">FireSim’s Performance “Iron Law”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#host-frequency-f-h">Host Frequency (<span class="math notranslate nohighlight">\(f_{h}\)</span>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#fmr">FMR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#effective-target-frequency">Effective Target Frequency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#performance-summary-report">Performance Summary Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#multi-clock-target-considerations">Multi-Clock Target Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Run-Docs/Simulator-Performance.html#unsynchronized-clock-edges">Unsynchronized Clock Edges</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Debug Features:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html">Assertion Synthesis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#chisel-interface">Chisel Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#build-time-usage">Build-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#assertion-subsampling">Assertion Subsampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#assertion-grouping">Assertion Grouping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#runtime-arguments">Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#limitations-tradeoffs">Limitations &amp; Tradeoffs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Assertion-Synthesis.html#related-publications">Related Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html">Printf Synthesis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html#chisel-interface">Chisel Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html#runtime-arguments">Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html#limitations-tradeoffs">Limitations &amp; Tradeoffs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Printf-Synthesis.html#related-publications">Related Publications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Snapshotting.html">State Snapshot and Replay</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Snapshotting.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Snapshotting.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#runtime-arguments">Runtime Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Snapshotting.html#replay-time-usage">Replay-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#id1">Runtime Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#replay-waveform-structure">Replay Waveform Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Snapshotting.html#end-to-end-primo-example">End-to-End Primo example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Snapshotting.html#implementation-details">Implementation Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#snapshotting-bridge">Snapshotting bridge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#snapshotting-life-cycle">Snapshotting life cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#state-extraction">State extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#register-scanning">Register scanning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#memory-scanning">Memory scanning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#i-o-tracing">I/O Tracing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Snapshotting.html#snapshot-file-format">Snapshot File Format</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/AutoCounter.html">AutoCounter: Sideband Counters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/AutoCounter.html#chisel-interface">Chisel Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/AutoCounter.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/AutoCounter.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/AutoCounter.html#autocounter-csv-output-format">AutoCounter CSV Output Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/AutoCounter.html#using-tracerv-trigger-with-autocounter">Using TracerV Trigger with AutoCounter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/AutoCounter.html#autocounter-using-synthesizable-printfs">AutoCounter using Synthesizable Printfs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/AutoCounter.html#reset-timing-considerations">Reset &amp; Timing Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/AutoCounter.html#limitations-tradeoffs">Limitations &amp; Tradeoffs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html">AutoILA: FPGA Probe Insertion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html#chisel-interface">Chisel Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html#build-time-usage">Build-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html#setting-a-ila-depth">Setting a ILA Depth</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html#aws-f1">AWS F1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Debugging-Hardware-Using-ILA.html#primo">Primo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/Triggers.html">Simulation Triggers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Triggers.html#quick-start-guide">Quick-Start Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Triggers.html#level-sensitive-trigger-source">Level-Sensitive Trigger Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Triggers.html#distributed-edge-sensitive-trigger-source">Distributed, Edge-Sensitive Trigger Source</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Triggers.html#chisel-interface">Chisel Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Triggers.html#trigger-sources">Trigger Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/Triggers.html#trigger-sinks">Trigger Sinks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Triggers.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Triggers.html#simulation-time-usage">Simulation-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Triggers.html#id1">Trigger Timing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/Triggers.html#limitations-pitfalls">Limitations &amp; Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/TracerV.html">TracerV: Instruction Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV.html#enabling-the-tracerv-bridge-in-the-frontend">Enabling the TracerV Bridge in the Frontend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#enabling-tracing-at-runtime-enable">Enabling Tracing at Runtime (<code class="docutils literal notranslate"><span class="pre">enable</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#selecting-a-trace-output-format-output-format">Selecting a Trace Output Format (<code class="docutils literal notranslate"><span class="pre">output_format</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#setting-a-tracerv-trigger-select-start-end">Setting a TracerV Trigger (<code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#instruction-value-trigger">Instruction value trigger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV.html#interpreting-the-trace-result">Interpreting the Trace Result</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#human-readable-output">Human readable output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#binary-output">Binary output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TracerV.html#flame-graph-output">Flame Graph output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV.html#caveats-tradeoffs">Caveats / Tradeoffs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/JTAG.html">JTAG, OpenOCD &amp; GDB</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/JTAG.html#jtag-plusargs">JTAG plusargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/JTAG.html#debugging-with-jtag">Debugging with JTAG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/JTAG.html#launching-the-simulation">Launching the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/JTAG.html#openocd-configuration">OpenOCD configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/JTAG.html#gdb-configuration">GDB configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html">TracerV + Flame Graphs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#what-are-flame-graphs">What are Flame Graphs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#enabling-flame-graph-generation-in-config-runtime-yaml">Enabling Flame Graph generation in <code class="docutils literal notranslate"><span class="pre">config_runtime.yaml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#producing-dwarf-information-to-supply-to-the-tracerv-driver">Producing DWARF information to supply to the TracerV driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#modifying-your-workload-description">Modifying your workload description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#running-a-simulation">Running a simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TracerV-with-FlameGraph.html#caveats">Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Debug-Features/TokenHasher.html">Token Hashers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TokenHasher.html#build-time-usage">Build-Time Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TokenHasher.html#simulation-time-usage">Simulation-Time Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TokenHasher.html#runtime-arguments">Runtime Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Debug-Features/TokenHasher.html#output-csv-file-format">Output CSV File Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Debug-Features/TokenHasher.html#limitations-caveats">Limitations / Caveats</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Metasimulation Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html">Debugging with Metasimulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#supported-host-simulators">Supported Host Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#understanding-a-metasimulation-waveform">Understanding a Metasimulation Waveform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#module-hierarchy">Module Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#clock-edges-and-event-timing">Clock Edges and Event Timing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#finding-the-source-of-simulation-stalls">Finding The Source Of Simulation Stalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#metasimulation-vs-target-simulation-performance">Metasimulation vs. Target simulation performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Metasimulation-Docs/RTL-Simulation.html#meta-simulation-synchronization-and-fuzzing">Meta-Simulation Synchronization and Fuzzing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Bridge Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Bridge-Docs/Bridges.html">Target-to-Host Bridges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridges.html#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridges.html#target-side">Target Side</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Bridge-Docs/Bridges.html#type-parameters">Type Parameters:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Bridge-Docs/Bridges.html#abstract-members">Abstract Members:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridges.html#what-happens-next">What Happens Next?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridges.html#host-side">Host Side</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridges.html#compile-time-parameterization-vs-runtime-configuration">Compile-Time (Parameterization) vs Runtime Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridges.html#target-side-vs-host-side-parameterization">Target-Side vs Host-Side Parameterization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Bridge-Docs/Bridge-Walkthrough.html">Bridge Walk-through</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Bridge-Docs/Bridge-Walkthrough.html#termination-bridge-host-mmio">Termination Bridge (Host-MMIO)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Bridge-Docs/Bridge-Walkthrough.html#target-side">Target Side</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Bridge-Docs/Bridge-Walkthrough.html#host-side-bridgemodule">Host-Side BridgeModule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Bridge-Docs/Bridge-Walkthrough.html#host-side-driver">Host-Side Driver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Developer Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html">Compiler &amp; Driver Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#integration-tests">Integration Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#key-files-locations">Key Files &amp; Locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#defining-a-new-test">Defining a New Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#scala-unit-testing">Scala Unit Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#id1">Key Files &amp; Locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#id2">Defining A New Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#c-c-guidelines">C/C++ guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Rhodium-and-Driver-Development.html#scala-guidelines">Scala guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Manager-Development.html">Manager Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Manager-Development.html#formatting-and-linting">Formatting and Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Manager-Development.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Manager-Development.html#adding-pytests-to-ci">Adding PyTests To CI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Manager-Development.html#checking-in-manager-runtime-configs">Checking in manager runtime configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Manager-Development.html#versioning">Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Manager-Development.html#release-process">Release Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Container-Development.html">Container Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#container-operation">Container Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#container-limitations">Container Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#container-files">Container Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Container-Development.html#containers-overlay"><code class="docutils literal notranslate"><span class="pre">containers/overlay</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Container-Development.html#containers-scripts"><code class="docutils literal notranslate"><span class="pre">containers/scripts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Container-Development.html#containers-sensitivity-list"><code class="docutils literal notranslate"><span class="pre">containers/sensitivity-list</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#hash-inputs-sh"><code class="docutils literal notranslate"><span class="pre">hash-inputs.sh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#building-locally">Building Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#pushing-a-new-image">Pushing a New Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#updating-the-sifive-modules">Updating the SiFive Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Container-Development.html#runhost-container">Runhost Container</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Documentation.html">Documentation Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Documentation.html#build-process">Build Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Documentation.html#building-under-ci">Building under CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Documentation.html#building-internal-documentation">Building Internal Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Documentation.html#building-ep-documentation">Building EP Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Documentation.html#useful-functions-best-practices">Useful Functions &amp; Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Documentation.html#file-references-gh-file-ref">File References (<code class="docutils literal notranslate"><span class="pre">gh-file-ref</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Documentation.html#injecting-code-snippets">Injecting Code Snippets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Developer-Docs/Documentation.html#configuring-the-copy-button">Configuring the Copy Button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Documentation.html#updating-the-tutorials">Updating The Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Developer-Docs/Git-Subtree.html"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">subtree</span></code> &amp; FireSim-private</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Git-Subtree.html#git-log-in-federation"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> in Federation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Developer-Docs/Git-Subtree.html#external-resources">External Resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Miscellaneous:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Misc/Why-FireSim.html">Why FireSim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Misc/Why-FireSim.html#firesim-vs-fpga-prototyping">FireSim vs FPGA Prototyping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Misc/Why-FireSim.html#why-use-firesim">Why Use FireSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Misc/Why-FireSim.html#why-not-firesim">Why Not FireSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Misc/Why-FireSim.html#how-is-host-decoupling-implemented">How is Host-Decoupling Implemented?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Misc/LI-BDN.html">Target Abstraction &amp; Host Decoupling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Misc/LI-BDN.html#the-target-as-a-dataflow-graph">The Target as a Dataflow Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Misc/LI-BDN.html#model-implementations">Model Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Misc/LI-BDN.html#expressing-the-target-graph">Expressing the Target Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Misc/LI-BDN.html#latency-insensitive-bounded-dataflow-networks">Latency-Insensitive Bounded Dataflow Networks</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="attribution">
+<h1>Attribution<a class="headerlink" href="#attribution" title="Link to this heading">¶</a></h1>
+<p>These docs were based off the <a class="reference external" href="https://docs.fires.im/">documentation</a> for the
+open-source FireSim project written by Sagar Karandikar, David Biancolin,
+Abraham Gonzalez, Howard Mao, Donggyu Kim, Alon Amid, students of the Berkeley Architecture
+Research group, and many other contributors.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="FireSim-Basics.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">FireSim Basics</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=30d551ce"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=ba07b388"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
