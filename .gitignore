@@ -1,0 +1,19 @@
+# Sphinx build output
+docs/build/
+build/
+_build/
+
+# Sphinx cache
+.doctrees/
+*.pickle
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VSCode and IDE settings
+.vscode/
+.idea/
+
